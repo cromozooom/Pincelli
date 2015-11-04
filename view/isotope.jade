@@ -1,0 +1,36 @@
+block infoArtwork
+
+.col-sm-4.item(class="#{filter01} #{filter02} #{filter03} #{filter04} #{filter05}")
+	.item-wrap
+		a(href="#{siteName}/gallery/#{htmlName}/#{htmlName}.html")
+			picture
+				source(srcset="gallery/#{htmlName}/thumbnail/#{imgName}_1.jpg" media="(min-width: 800px)")
+				source(srcset="gallery/#{htmlName}/thumbnail/#{imgName}_1.jpg" media="(min-width: 600px)")
+				img.img-responsive(srcset="gallery/#{htmlName}/thumbnail/#{imgName}_1.jpg" alt="#{titleArtork}" title="#{titleArtork}")
+		.infoArtwork
+			h5 !{titleArtork}
+			span.pull-left !{artworkSize}
+			a.pull-right(href="#{siteName}/gallery/#{htmlName}/#{htmlName}.html")
+				| view details
+			if debug
+				.clearfix
+				hr
+				h3
+					small now
+					.lead #{priceNow} €&nbsp;&nbsp;
+						small + shipping
+				if linkEtsy
+					i
+						small take advantage of&nbsp;&nbsp;
+						| #{takeAdvantageOf} €
+					hr
+					a.btn.btn_ghost(href="#{linkEtsy}") Price on Etsy
+						s #{priceEtsy} €
+				else
+					i
+						small take advantage of&nbsp;&nbsp;
+						| #{takeAdvantageOf} €
+					br
+					p from #{price} €
+
+			.clearfix

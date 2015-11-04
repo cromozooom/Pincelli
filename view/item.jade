@@ -1,0 +1,283 @@
+//- index.jade
+extends template.jade
+
+block var
+	- var metaDescription 		= "official site of Calina Lefter"
+	- var title 			= "official site of Calina Lefter"
+	- var keywords 		= "art, artwork"
+	- var bodyClass 		= "item"
+	- var isotopeScript 		= false
+	- var myJs 			= false
+	- var addTyhis 			= false
+	- var typePage 			= "artwork"
+	- var assets 			= "../../assets"
+	- var relativeLink 		= "../../"
+	- var pinterest 			= false
+	if debug
+		- var gallerylink 		= "gallery"
+	else
+		- var gallerylink 		= "http://calinalefter.com/gallery"
+	block appendVar
+
+block content
+	.container.productCard
+		.row
+			.row-same-height.row-same-height
+				.col-md-4.col-sm-height.col-middle.img
+					.hidden-sm.hidden-lg.hidden-md
+						h1.pull-left(itemprop="name") !{titleArtork}
+						p.text-right.pull-right: i #{yearBy}
+					img.img-responsive(src="small/#{imgName}_sim.jpg" title="#{titleArtork} - #{yearBy}" alt="#{titleArtork} - #{yearBy}" )
+					block id
+						p: small.id ##{id}
+				.col-md-8.col-sm-height.artInfo
+					.row
+						if available == "sell"
+							.col-xs-12.col-md-5.pull-right
+								br
+								.hidden-xs.hidden-lg.hidden-md
+									p
+										i #{yearBy}
+									h1(itemprop="name") !{titleArtork}
+
+								.details
+										if freeShipping
+											p.shipping.text-center #{freeShippingTxt}
+										//- price
+										.price
+											.container-fluid
+												meta(itemprop="priceCurrency" content="EUR")
+												if promo
+													block price-if-sell
+														.row
+															.col-xs-6.now.text-center
+																span
+																	small(itemprop="price") €
+																	| #{priceNow}
+															.col-xs-6.old.text-center
+																span
+																	small(itemprop="offers") €
+																	s #{price}
+														.row
+															.col-xs-12.ctaBuy.text-center
+																if linkEtsy
+																	a(href="#{linkEtsy}")
+																		| ORDER ONE
+																else
+																	a(href="#{relativeLink}#{contactPage}")
+																		| ORDER ONE
+
+												if globalPromo
+													block price-if-sell
+													//-.row
+														.col-xs-6.now.text-center
+															span
+																small(itemprop="price") €
+																| #{priceNow}
+														.col-xs-6.old.text-center
+															span
+																small(itemprop="offers") €
+																s #{price}
+													//-.row
+														.col-xs-12.ctaBuy.text-center
+															a(href="#{relativeLink}#{contactPage}")
+																| ORDER ONE
+
+												else
+													.row
+														.col-xs-12.ctaBuy.text-center
+															if linkEtsy
+																a(href="#{linkEtsy}")
+																	|  ORDER ONE at
+																	span(itemprop="price")
+																		| €
+																		| #{price}
+															else
+																a(href="#{relativeLink}#{contactPage}")
+																	|  ORDER ONE at
+																	span(itemprop="price")
+																		| €
+																		| #{price}
+								block ProductNote
+									br
+									.small.note.text-left
+										b
+											| Note:
+											br
+										span
+											i
+												| Ask for the shipping cost on the
+												a(href="../#{contactPage}")
+													u contact page.
+												br
+												| Signed also rear. Certification of Authenticity is attached
+									hr
+								block share
+									ul.list-inline
+										li
+											.fb-share-button(data-href="#{gallerylink}/#{htmlName}" data-layout="button_count")
+										li
+											a.tumblr-share-button(data-color="blue" data-notes="right" href="https://embed.tumblr.com/share")
+											script
+												!function(d,s,id){var js,ajs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://secure.assets.tumblr.com/share-button.js";ajs.parentNode.insertBefore(js,ajs);}}(document, "script", "tumblr-js");
+										li
+											a(href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red")
+												img(src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png")
+											script(type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js")
+
+										//-li
+											a(href="//www.pinterest.com/pin/create/button/?url=http//www.calinalefter.com/#{htmlName}&media=http//www.calinalefter.com/gallery/small/#{imgName}_sim.jpg&description=#{yearBy}" data-pin-do="buttonPin" data-pin-config="above" data-pin-color="red" data-pin-height="28")
+												img(src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png")
+						if available == "avalableEtsy"
+							.col-xs-12.col-md-5.pull-right
+								.hidden-xs.hidden-lg.hidden-md
+									p
+										i #{yearBy}
+									h1(itemprop="name") !{titleArtork}
+
+								.details
+										if freeShipping
+											p.shipping.text-center #{freeShippingTxt}
+										//- price
+										.price
+											.container-fluid
+												meta(itemprop="priceCurrency" content="EUR")
+												if promo
+													block price-if-avalableEtsy
+														if price
+															.row
+																.col-xs-6.now.text-center
+																	span
+																		small(itemprop="price") €
+																		| #{priceNow}
+																.col-xs-6.old.text-center
+																	span
+																		small(itemprop="offers") €
+																		s  #{price}
+															.row
+																.col-xs-12.ctaBuy.text-center
+																	if linkEtsy
+																		a(href="#{relativeLink}#{contactPage}")
+																			| BUY NOW
+																	else
+																		a(href="#{relativeLink}#{contactPage}")
+
+															.col-xs-12.text-center
+																a.etsyPrice(href="#{linkEtsy}")
+																	| or buy from etsy store at
+																	span(itemprop="price")
+																		| €
+																		| #{priceEtsy}
+														else
+															.row
+																.col-xs-12.ctaBuy.text-center
+																	if linkEtsy
+																		a(href="#{linkEtsy}")
+																			| BUY NOW at
+																			span(itemprop="price")
+																				| €
+																				| #{priceNow}
+																	else
+																		a(href="#{relativeLink}#{contactPage}")
+																			| BUY NOW at
+																			span(itemprop="price")
+																				| €
+																				| #{priceNow}
+												if globalPromo
+													block price-if-avalableEtsy
+												else
+													.row
+														if linkEtsy
+															.col-xs-12.ctaBuy.text-center
+																a(href="#{relativeLink}#{contactPage}")
+																	| BUY NOW at
+																	span(itemprop="price")
+																		| €
+																		| #{price}
+															.col-xs-12.text-center
+																a.etsyPrice(href="#{linkEtsy}")
+																	| or buy from etsy store at
+																	span(itemprop="price")
+																		| €
+																		| #{priceEtsy}
+
+														else
+															.col-xs-12.ctaBuy.text-center
+																a(href="#{relativeLink}#{contactPage}")
+																	| BUY NOW at
+																	span(itemprop="price")
+																		| €
+																		| #{price}
+								block ProductNote
+								block share
+
+
+						//- else
+							.col-xs-12.col-md-5.pull-right
+								br
+								.hidden-xs.hidden-lg.hidden-md
+									p
+										i #{yearBy}
+									h1(itemprop="name") !{titleArtork}
+								if available == "available"
+									p.text-center: i You are interested in buying this?
+									a.btn_ghost.btn-lg_ghost.btn-brand_ghost.btn-block_ghost(href="#{relativeLink}#{contactPage}") Contact me
+									br
+
+
+
+								if available == "sell"
+									p.text-center: i This is already sell, but if you are interested in similar one?
+									a.btn_ghost.btn-lg_ghost.btn-brand_ghost.btn-block_ghost(href="#{relativeLink}#{contactPage}") You can order one
+									br
+
+								block ProductNote
+								block share
+
+						//- Details
+						.col-xs-12.hidden-md.hidden-lg
+						br
+						.col-xs-12.col-md-7.pull-left
+							.hidden-xs.hidden-sm
+								p
+									i #{yearBy}
+								h1(itemprop="name") !{titleArtork}
+							hr
+							block listDescription
+								ul.standardInfo(itemprop="description")
+									li.size
+										span Size:&nbsp;
+										i !{artworkSize}
+									li.tagStyle
+										span Tag & Style:&nbsp;
+										i #{tagTxt}
+									li.materials
+										span Materials:&nbsp;
+										i #{materials}
+							hr
+							if lDescription
+								p.description
+									b Description:&nbsp;
+									span(itemprop="description") !{lDescription}
+									if available == "avalableEtsy"
+										br
+										a.pull-right(href="#{linkEtsy}"): i read more
+									if available == "sell"
+										br
+							else
+	.container
+		.row.gallery
+			- var picture = 0
+				while picture < imgNr
+					.col-md-12.text-center.text-hide= picture++
+						picture
+							source( srcset="large/#{imgName}_#{picture}.jpg" media="(min-width: 1000px)")
+							source(srcset="medium/#{imgName}_#{picture}.jpg" media="(min-width: 800px)")
+							img.img-responsive(srcset="small/#{imgName}_#{picture}.jpg" alt="#{titleArtork} - #{yearBy}" title="#{titleArtork} - #{yearBy}" itemprop="image")
+						br
+						hr
+	.row.gallery.hidden
+			- var picture = 0
+				while picture < imgNr
+					.col-md-12.text-center.text-hide= picture++
+						img(src="small/#{imgName}_#{picture}.jpg"  title="#{titleArtork} - #{yearBy}" alt="#{titleArtork} - #{yearBy}")

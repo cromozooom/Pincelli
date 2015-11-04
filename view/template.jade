@@ -1,0 +1,318 @@
+block config
+	- var debug = true
+
+	block var
+		- var metaDescription 		= "default description"
+		- var title 			= "default Title"
+		- var keywords 		= "art, artwork"
+		- var bodyClass 		= "indexDefault"
+		- var isotopeScript 		= true
+		- var myJs 			= true
+		- var addTyhis 			= true
+		- var contactPageScript 	= false
+		- var typePage 			= "page"
+		//- var assets 			= "assets"
+		//- var relativeLink 		= ""
+
+	block defaultVar
+		//- script
+		- var jQueryScript 		= true
+		- var bootstrapScript 		= true
+		- var fb_share 			= true
+		- var analytics 			= true
+		- var pinterest 			= true
+
+		//- contact page link
+		if debug
+			- var contactPage 		= "contact.html"
+			- var siteName 			= ""
+		else
+			- var siteName 			= "http://calinalefter.com"
+			- var contactPage 		= "contact.php"
+		//- meta
+		- var author 			= "Nicu Razvan Gabriel - soloPx.com"
+
+		//- copy
+		- var brand 			= "Calina Lefter"
+		- var freeShippingTxt 		= "Free shipping"
+		- var copyRight 		= "Copyright (c) 2015 Calina Lefter"
+
+		//- social network
+		- var fBpageLink 		= "https://www.facebook.com/alifantro"
+		- var instagramLink 		= "https://instagram.com/calinalefter/"
+		- var thumblrLink 		= "http://calinalefter.tumblr.com/"
+		- var pinterestLink 		= "https://it.pinterest.com/calinalefter/"
+		- var twitterLink 		= "https://twitter.com/moondiary"
+		- var etsyLinkStore 		= "http://goo.gl/7I9BX4"
+		- var mailListLink 		= "http://solopx.us2.list-manage1.com/subscribe?u=d209276dc2cb11e5f6fda4bdc&id=3405d11793"
+
+
+
+	//- PAIR 01 -------------------------------------------------------------------------------------
+	//- mono sans
+	//- font-family: 'Josefin Sans', sans-serif;
+	- var googleFonts01			= "https://fonts.googleapis.com/css?family=Josefin+Sans:400,700"
+	//- serife
+	//- font-family: 'Playfair Display', serif;
+	- var googleFonts02			= "https://fonts.googleapis.com/css?family=Playfair+Display"
+
+	//- PAIR 02 -------------------------------------------------------------------------------------
+	//- sans normal Head
+	//- font-family: 'Playfair Display', serif;
+	- var googleFonts01			= "https://fonts.googleapis.com/css?family=Playfair+Display"
+
+	//- sans normal body
+	//- font-family: 'Fauna One', serif;
+	- var googleFonts02			= "https://fonts.googleapis.com/css?family=Fauna+One"
+
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="description", content="#{metaDescription}")
+		meta(name="author", content="#{author}")
+		meta(name="keywords", content="#{keywords}")
+		meta(name="copyright", content="#{copyRight}")
+		meta(name="thumbnail" content="#{siteName}/gallery/thumbnail/#{thumbnailShareLink}")
+		//- FB share
+		meta( property="fb:app_id" content="#{id}")
+		meta( property="og:type" content="#{typePage}")
+		meta( property="og:url" content="http://calinalefter.com/#{htmlName}")
+		meta( property="og:title" content="#{title}")
+		meta( property="og:image" content="#{siteName}/gallery/thumbnail/#{thumbnailShareLink}")
+		meta( property="og:description" content="#{metaDescription}")
+
+		//- share
+		if thumbnailShareLink
+			link(rel="image_src" href="#{siteName}/gallery/thumbnail/#{thumbnailShareLink}")
+		link(rel="shortcut icon", href="#{assets}/ico/favicon.png")
+		link(href="#{googleFonts01}" rel="stylesheet" type="text/css")
+		link(href="#{googleFonts02}" rel="stylesheet" type="text/css")
+		title #{title}
+
+		//-Bootstrap core CSS
+		//- link(href="bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.css", rel="stylesheet")
+		//- my style
+		link(href="#{assets}/css/app.css", rel="stylesheet")
+		//-HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+		//-WARNING: Respond.js doesn"t work if you view the page via file://
+		//-[if lt IE 9]
+		//-script(src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js")
+		//-script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
+		//-[endif]
+	body( class="#{bodyClass}")
+		if analytics
+			//- analitycs
+			include include/google.html
+			//- end analitycs
+		if fb_share
+			include include/fb_SDK.html
+		block menu
+			nav.navbar.navbar-default(role="navigation")
+				//- Brand and toggle get grouped for better mobile display
+				.navbar-header
+					button.navbar-toggle(type="button" data-toggle="collapse" data-target="#navbar-collapse-1")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+				a.navbar-brand(href="#{relativeLink}index.html") Pincelli
+
+				//- Collect the nav links, forms, and other content for toggling
+				#navbar-collapse-1.collapse.navbar-collapse
+					ul.nav.navbar-nav.pull-right
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Cerimonie <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Matrimonio
+									ul
+										li
+											a(href="#")	Partecipazioni
+										li
+											a(href="#")	Bomboniere, Confezionamento, Bomboniere
+										li
+											a(href="#")	Confetteria
+										li
+											a(href="#")	Fiocchi e Nastri
+								li
+									a(href="#")	Nascite, Battesimi, Comunioni e Cresime
+									ul
+										li
+											a(href="#")	Bomboniere, Confezionamento, Bomboniere
+										li
+											a(href="#")	Confetteria
+										li
+											a(href="#")	Fiocchi e Nastri
+								li
+									a(href="#")	Laurea
+										ul
+											li
+												a(href="#")	Bomboniere, Confezionamento, Bomboniere
+											li
+												a(href="#")	Confetteria
+											li
+												a(href="#")	Fiocchi e Nastri
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Feste e Party <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Coordinati da Tavola Monouso
+									ul
+										li
+											a(href="#")	Piatti, Bicchieri & Posate
+										li
+											a(href="#")	Tovaglie, Tovaglioli
+										li
+											a(href="#")	Accessori vari (candele, etc.)
+								li
+									a(href="#")	Festoni, Ghirlande, Coriandoli e Palloncini
+								li
+									a(href="#")	Altro
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Imballaggio <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Scatole e confezioni regalo
+									ul
+										li
+											a(href="#")	Scatole e confezioni regali
+										li
+											a(href="#")	Carta Rivestimento
+										li
+											a(href="#")	Nastri Regalo
+										li
+											a(href="#")	Scatole per Armadi
+								li
+									a(href="#")	Prodotti da Imballaggio
+									ul
+										li
+											a(href="#")	Scatole da  Imballaggio
+										li
+											a(href="#")	Pluriball
+										li
+											a(href="#")	Estensibili
+										li
+											a(href="#")	Teli copri tutto
+										li
+											a(href="#")	Nastri Adesivi
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Cucina <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Prodotti per Pasticceria
+									ul
+										li
+											a(href="#")	Stampi Cottura
+											ul
+												li
+													a(href="#")	Stampi
+												li
+													a(href="#")	Pirottini
+										li
+											a(href="#")	Vassoi e Pizzi
+										li
+											a(href="#")	Scatole Torta
+
+								li
+									a(href="#")	Alimentari e Ristorazione
+									ul
+										li
+											a(href="#")	Alluminio
+											//ul
+												li
+													a(href="#")	Scatole per Alimenti
+												li
+													a(href="#")	Rotoli Alluminio
+										li
+											a(href="#")	Plastica e Carta per Alimenti
+											// ul
+												li
+													a(href="#")	Scatole Plastica Trasparenti
+												li
+													a(href="#")	Rotolo Pellicola
+												li
+													a(href="#")	Sacchetti Plastica e cellophane
+												li
+													a(href="#")	Carta Forno
+												li
+													a(href="#")	Carta e sacchetti Per alimenti
+												li
+													a(href="#")	Rotoloni Carta
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Borse e Sacchetti <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Shoppers BIO
+								li
+									a(href="#")	Shoppers M/F
+								li
+									a(href="#")	Borse e Sacchetti Carta
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Pulizia <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Attrezzature
+									ul
+										li
+											a(href="#")	Spugne e Strofinacci
+										li
+											a(href="#")	Rotoloni Carta
+										li
+											a(href="#")	Guanti
+										li
+											a(href="#")	Altri
+								li
+									a(href="#")	Saponi e Detergenti
+									ul
+										li
+											a(href="#")	Sgrassatori
+										li
+											a(href="#")	Vetri
+										li
+											a(href="#")	Mani
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Ufficio <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Ufficio
+								li
+									a(href="#")	Cartoleria
+						li.dropdown
+							a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Fai da te <span class="caret"></span>
+							ul.dropdown-menu
+								li
+									a(href="#")	Bricolage
+								li
+									a(href="#")	Tempo libero
+
+
+
+
+
+
+		block content
+
+		block footer
+
+		//- Bootstrap core JavaScript
+		if jQueryScript
+			script(src="#{assets}/js/jquery.min.js")
+
+		if bootstrapScript
+			script(src="#{assets}/js/bootstrap.min.js")
+		//- isotope 1.5.25
+		if isotopeScript
+			script(src="#{assets}/js/jquery.isotope.min.js")
+			script(src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.0/picturefill.min.js")
+		//- my js
+		if myJs
+			script(src="#{assets}/js/my.js")
+		if addTyhis
+			//- Go to www.addthis.com/dashboard to customize your tools -->
+			script(type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fbdebdb6ae62d57" async="async")
+		if contactPageScript
+			script(src="#{assets}/js/validator.min.js")
+		if pinterest
+			script(type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js")
